@@ -1,5 +1,6 @@
 .vscode/
 examples/build/
+.DS_Store
 
 # Prerequisites
 *.d

@@ -7,25 +7,27 @@ namespace rutherford
 {
 
 template<bool Real>
-class RealImagElement : public Element
+class RealImagElement : public Element<RealImagElement<Real>>
 {
+    friend class Element<RealImagElement<Real>>;
+
 public:
     template<typename T>
-    RealImagElement(T&& child) :
-        child(std::forward<T>(child))
+    RealImagElement(T&& aChild) :
+        myChild(std::forward<T>(aChild))
     {
     }
+    
+private:
+    Expression myChild;
 
-    void insert(std::ostream& stream) const
+    void insert(std::ostream& aStream) const
     {
         if(Real)
-            stream << "Re{" << child << "}";
+            aStream << "Re{" << myChild << "}";
         else
-            stream << "Im{" << child << "}";
+            aStream << "Im{" << myChild << "}";
     }
-
-private:
-    Expression child;
 };
 
 }

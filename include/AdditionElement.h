@@ -7,28 +7,30 @@ namespace rutherford
 {
 
 template<bool Add>
-class AdditionElement : public Element
+class AdditionElement : public Element<AdditionElement<Add>>
 {
+    friend class Element<AdditionElement<Add>>;
+    
 public:
     template<typename L, typename R>
-    AdditionElement(L&& left, R&& right) :
-        left(std::forward<L>(left)),
-        right(std::forward<R>(right))
+    AdditionElement(L&& aLeft, R&& aRight) :
+        myLeft(std::forward<L>(aLeft)),
+        myRight(std::forward<R>(aRight))
     {
-    }
-
-    void insert(std::ostream& stream) const
-    {
-        stream << "(" << left;
-        if(Add)
-            stream << " + ";
-        else
-            stream << " - ";
-        stream << right << ")";
     }
 
 private:
-    Expression left, right;
+    Expression myLeft, myRight;
+
+    void insert(std::ostream& aStream) const
+    {
+        aStream << "(" << myLeft;
+        if(Add)
+            aStream << " + ";
+        else
+            aStream << " - ";
+        aStream << myRight << ")";
+    }
 };
 
 }

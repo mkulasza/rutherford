@@ -6,21 +6,23 @@ namespace rutherford
 {
 
 template<bool Complex>
-class VariableElement : public Element
+class VariableElement : public Element<VariableElement<Complex>>
 {
+    friend class Element<VariableElement<Complex>>;
+
 public:
-    VariableElement(const std::string& name) :
-        name(name)
+    VariableElement(const std::string& aName) :
+        myName(aName)
     {            
     }
     
-    void insert(std::ostream& stream) const
+    void insert(std::ostream& aStream) const
     {
-        stream << name;
+        aStream << myName;
     }
 
 private:
-    std::string name;
+    std::string myName;
 };
 
 }

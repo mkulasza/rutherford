@@ -7,22 +7,24 @@ namespace rutherford
 {
 
 template<typename T>
-class ConstantElement : public Element
+class ConstantElement : public Element<ConstantElement<T>>
 {
+    friend class Element<ConstantElement<T>>;
+    
     static_assert(is_numeric_v<T>, "ConstantElement type must be numeric");
 public:
-    ConstantElement(T value) :
-        value(value)
+    ConstantElement(T aValue) :
+        myValue(aValue)
     {
-    }
-
-    void insert(std::ostream& stream) const
-    {
-        stream << value;
     }
 
 private:
-    T value;
+    T myValue;
+
+    void insert(std::ostream& aStream) const
+    {
+        aStream << myValue;
+    }
 };
 
 }

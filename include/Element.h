@@ -6,12 +6,24 @@
 namespace rutherford
 {
 
+template<typename T>
 class Element
 {
 public:
-    virtual ~Element();
+    virtual ~Element()
+    {
+    }
 
-    virtual void insert(std::ostream& stream) const = 0;
+private:
+    void insert(std::ostream& aStream) const
+    {
+    }
 };
+
+template<typename T>
+std::ostream& operator<<(std::ostream& aStream, const Element<T>* anElement)
+{
+    static_cast<T*>(anElement)->insert(aStream);
+}
 
 }

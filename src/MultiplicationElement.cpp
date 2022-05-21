@@ -3,9 +3,9 @@
 namespace rutherford
 {
 
-void MultiplicationElement::insert(std::ostream& stream) const
+void MultiplicationElement::insert(std::ostream& aStream) const
 {
-    stream << left << " * " << right;
+    aStream << myLeft << " * " << myRight;
 }
 
 }

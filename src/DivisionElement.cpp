@@ -3,9 +3,9 @@
 namespace rutherford
 {
 
-void DivisionElement::insert(std::ostream& stream) const
+void DivisionElement::insert(std::ostream& aStream) const
 {
-    stream << numerator << " / " << denominator;
+    aStream << myNumerator << " / " << myDenominator;
 }
 
 }

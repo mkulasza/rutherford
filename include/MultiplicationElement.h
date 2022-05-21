@@ -6,20 +6,22 @@
 namespace rutherford
 {
 
-class MultiplicationElement : public Element
+class MultiplicationElement : public Element<MultiplicationElement>
 {
+    friend class Element<MultiplicationElement>;
+
 public:
     template<typename L, typename R>
-    MultiplicationElement(L&& left, R&& right) :
-        left(std::forward<L>(left)),
-        right(std::forward<R>(right))
+    MultiplicationElement(L&& aLeft, R&& aRight) :
+        myLeft(std::forward<L>(aLeft)),
+        myRight(std::forward<R>(aRight))
     {
     }
 
-    void insert(std::ostream& stream) const;
-
 private:
-    Expression left, right;
+    Expression myLeft, myRight;
+
+    void insert(std::ostream& aStream) const;
 };
 
 }
